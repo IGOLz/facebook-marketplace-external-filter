@@ -1,6 +1,6 @@
 #!/usr/bin/env swift
 // Usage: swift .github/assets/make-icon.swift .github/assets/icon.png
-// Marketplace Native Only icon: glassy white SF "storefront" glyph on a mint→emerald→teal squircle.
+// Facebook Marketplace External Filter icon: glassy white SF "storefront" glyph on a mint→emerald→teal squircle.
 // Same macOS grid as Flusso: 824 body, continuous corners r≈185, shadow in margin.
 import AppKit
 import CoreGraphics

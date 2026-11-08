@@ -1,5 +1,5 @@
 {
-  "extName": { "message": "Marketplace Native Only" },
+  "extName": { "message": "Facebook Marketplace External Filter" },
   "extDescription": { "message": "Hides Facebook Marketplace partner listings imported from external sites, so you only see items posted on Facebook." },
   "enabledLabel": { "message": "Filter partner listings" },
   "modeHide": { "message": "Hide" },

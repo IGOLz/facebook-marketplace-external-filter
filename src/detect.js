@@ -78,5 +78,5 @@
 
   const api = { classifyHref, classifyAnchor, findCard, itemIdFromHref };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
-  else root.MNODetect = api;
+  else root.FMFDetect = api;
 })(typeof globalThis !== "undefined" ? globalThis : this);

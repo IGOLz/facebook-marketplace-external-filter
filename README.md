@@ -1,13 +1,13 @@
 <div align="center">
 
-[![Release](https://img.shields.io/github/v/release/IGOLz/marketplace-native-only?style=for-the-badge)](https://github.com/IGOLz/marketplace-native-only/releases/latest)
+[![Release](https://img.shields.io/github/v/release/IGOLz/facebook-marketplace-external-filter?style=for-the-badge)](https://github.com/IGOLz/facebook-marketplace-external-filter/releases/latest)
 ![Manifest V3](https://img.shields.io/badge/Manifest-V3-1F8F5F?style=for-the-badge)
 ![Chromium](https://img.shields.io/badge/Brave%20%7C%20Chrome%20%7C%20Edge-supported-0E6F8A?style=for-the-badge)
-[![License](https://img.shields.io/github/license/IGOLz/marketplace-native-only?style=for-the-badge)](LICENSE)
+[![License](https://img.shields.io/github/license/IGOLz/facebook-marketplace-external-filter?style=for-the-badge)](LICENSE)
 
-<img src=".github/assets/icon.png" width="128" alt="Marketplace Native Only icon">
+<img src=".github/assets/icon.png" width="128" alt="Facebook Marketplace External Filter icon">
 
-# Marketplace Native Only
+# Facebook Marketplace External Filter
 
 ### Hide Facebook Marketplace listings imported from external sites. See only what people posted on Facebook.
 
@@ -25,7 +25,7 @@ This extension removes them, so the grid only shows listings published on Facebo
 
 The extension works in Chromium browsers: Brave, Chrome, Edge, Arc, Vivaldi.
 
-1. Download `marketplace-native-only-<version>.zip` from the [latest release](https://github.com/IGOLz/marketplace-native-only/releases/latest) and unzip it, or clone this repo.
+1. Download `facebook-marketplace-external-filter-<version>.zip` from the [latest release](https://github.com/IGOLz/facebook-marketplace-external-filter/releases/latest) and unzip it, or clone this repo.
 2. Open `brave://extensions` (or `chrome://extensions`) and turn on **Developer mode**.
 3. Click **Load unpacked** and select the unzipped folder (the one containing `manifest.json`).
 4. Open [Facebook Marketplace](https://www.facebook.com/marketplace/). Pin the extension to see how many partner listings it filtered.
@@ -53,7 +53,7 @@ Every Marketplace card links to `/marketplace/item/<id>/`. For each card the ext
 Matching cards are marked and hidden with CSS. Nothing is removed from the page, so turning the extension off restores them instantly.
 
 > [!WARNING]
-> These are undocumented Facebook internals and may change. If partner listings start showing up again, [open an issue](https://github.com/IGOLz/marketplace-native-only/issues).
+> These are undocumented Facebook internals and may change. If partner listings start showing up again, [open an issue](https://github.com/IGOLz/facebook-marketplace-external-filter/issues).
 
 ## Privacy
 
@@ -77,7 +77,7 @@ icons/                 toolbar and store icons
 
 ```sh
 node --test test/                 # run tests
-./scripts/package.sh              # build dist/marketplace-native-only-<version>.zip
+./scripts/package.sh              # build dist/facebook-marketplace-external-filter-<version>.zip
 swift .github/assets/make-icon.swift .github/assets/icon.png
 for s in 16 32 48 128; do sips -z $s $s .github/assets/icon.png --out icons/icon-$s.png; done
 ```
