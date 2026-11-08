@@ -6,7 +6,7 @@
 // at the end of each batch. Here the root becomes a CSS grid and every element
 // between it and the cells gets `display: contents`, so all cells share one grid.
 // Only data-* attributes are used: React keeps them, while it rewrites className.
-// The rules apply only in hide mode (html.fmf-hide), so dim mode and "off" restore
+// The rules apply only in hide mode (html[data-fmf-mode="hide"]), so dim mode and "off" restore
 // Facebook's own layout.
 
 (function (root) {
@@ -19,22 +19,22 @@
 
   function rules(minWidth) {
     return `
-      html.fmf-hide [data-fmf-r] {
+      html[data-fmf-mode="hide"] [data-fmf-r] {
         display: grid !important;
         grid-template-columns: repeat(auto-fill, minmax(${minWidth}px, 1fr)) !important;
         margin: 0 -4px !important;
         align-items: start;
       }
-      html.fmf-hide [data-fmf-m="c"] { display: contents !important; }
-      html.fmf-hide [data-fmf-m="full"] { grid-column: 1 / -1 !important; padding-inline: 4px; }
-      html.fmf-hide [data-fmf-m="gone"] { display: none !important; }
-      html.fmf-hide [data-fmf-r] [data-fmf-batch] > div {
+      html[data-fmf-mode="hide"] [data-fmf-m="c"] { display: contents !important; }
+      html[data-fmf-mode="hide"] [data-fmf-m="full"] { grid-column: 1 / -1 !important; padding-inline: 4px; }
+      html[data-fmf-mode="hide"] [data-fmf-m="gone"] { display: none !important; }
+      html[data-fmf-mode="hide"] [data-fmf-r] [data-fmf-batch] > div {
         max-width: none !important; min-width: 0 !important; width: auto !important;
       }
       /* Sponsored cells wrap a second copy of the cell markup: avoid doubled padding. */
-      html.fmf-hide [data-fmf-r] [data-fmf-batch] > div:has(> style) { padding: 0 !important; }
+      html[data-fmf-mode="hide"] [data-fmf-r] [data-fmf-batch] > div:has(> style) { padding: 0 !important; }
       /* Empty filler cells that keep Facebook's last row left-aligned. */
-      html.fmf-hide [data-fmf-r] [data-fmf-batch] > div:has(> div:only-child:empty) { display: none !important; }
+      html[data-fmf-mode="hide"] [data-fmf-r] [data-fmf-batch] > div:has(> div:only-child:empty) { display: none !important; }
     `;
   }
 
@@ -84,7 +84,7 @@
       gridRoot = findGridRoot(findCard);
       if (!gridRoot) return;
       css.textContent = rules(readMinWidth(gridRoot));
-      if (!css.isConnected) (document.head || document.documentElement).appendChild(css);
+      if (!css.isConnected) document.documentElement.appendChild(css);
       gridRoot.dataset.fmfR = "";
     }
 

@@ -3,7 +3,7 @@
   "name": "__MSG_extName__",
   "short_name": "Marketplace Filter",
   "description": "__MSG_extDescription__",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "default_locale": "en",
   "homepage_url": "https://github.com/IGOLz/facebook-marketplace-external-filter",
   "icons": {
@@ -25,7 +25,7 @@
     {
       "matches": ["https://www.facebook.com/*", "https://web.facebook.com/*"],
       "js": ["src/detect.js", "src/layout.js", "src/content.js"],
-      "run_at": "document_idle"
+      "run_at": "document_start"
     }
   ]
 }

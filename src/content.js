@@ -7,18 +7,27 @@
   let lastCount = -1;
   let scheduled = false;
 
+  // Until a card is checked by script, CSS alone catches partner cells as soon as
+  // Facebook inserts them: a grid cell (sibling of Facebook's <style>) whose item link
+  // contains the partner badge icon. This avoids a flash of partner listings on load.
+  const UNCHECKED_PARTNER =
+    'div:has(> style + div) > div:not([data-fmf-seen]):has(a[href*="/marketplace/item/"] svg)';
+
   const style = document.createElement("style");
   style.textContent = `
-    html.fmf-hide [data-fmf="partner"] { display: none !important; }
-    html.fmf-dim [data-fmf="partner"] { opacity: 0.25; filter: grayscale(1); transition: opacity .15s; }
-    html.fmf-dim [data-fmf="partner"]:hover { opacity: 0.8; }
+    html[data-fmf-mode="hide"] [data-fmf="partner"],
+    html[data-fmf-mode="hide"] ${UNCHECKED_PARTNER} { display: none !important; }
+    html[data-fmf-mode="dim"] [data-fmf="partner"],
+    html[data-fmf-mode="dim"] ${UNCHECKED_PARTNER} { opacity: 0.25; filter: grayscale(1); transition: opacity .15s; }
+    html[data-fmf-mode="dim"] [data-fmf="partner"]:hover { opacity: 0.8; }
   `;
-  (document.head || document.documentElement).appendChild(style);
+  document.documentElement.appendChild(style);
 
+  // A data attribute rather than a class: Facebook rewrites <html>'s className.
   function applyMode() {
     const root = document.documentElement;
-    root.classList.toggle("fmf-hide", settings.enabled && settings.mode === "hide");
-    root.classList.toggle("fmf-dim", settings.enabled && settings.mode === "dim");
+    if (settings.enabled) root.dataset.fmfMode = settings.mode;
+    else delete root.dataset.fmfMode;
   }
 
   function scan() {
@@ -28,6 +37,7 @@
       if (anchor.dataset.fmfHref === href) continue;
       anchor.dataset.fmfHref = href;
       const card = findCard(anchor);
+      card.dataset.fmfSeen = "";
       if (classifyAnchor(anchor) === "partner") card.dataset.fmf = "partner";
       else delete card.dataset.fmf;
     }
@@ -52,16 +62,19 @@
     requestAnimationFrame(scan);
   }
 
+  // Runs at document_start: filter with the defaults right away, then apply the
+  // stored settings, which arrive long before Facebook renders the grid.
+  applyMode();
+  new MutationObserver(schedule).observe(document.documentElement, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ["href"],
+  });
   chrome.storage.sync.get(DEFAULTS, (stored) => {
     settings = stored;
     applyMode();
-    scan();
-    new MutationObserver(schedule).observe(document.documentElement, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ["href"],
-    });
+    schedule();
   });
 
   chrome.storage.onChanged.addListener((changes, area) => {
