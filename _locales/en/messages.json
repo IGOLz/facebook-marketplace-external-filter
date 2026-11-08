@@ -1,0 +1,13 @@
+{
+  "extName": { "message": "Marketplace Native Only" },
+  "extDescription": { "message": "Hides Facebook Marketplace partner listings imported from external sites, so you only see items posted on Facebook." },
+  "enabledLabel": { "message": "Filter partner listings" },
+  "modeHide": { "message": "Hide" },
+  "modeDim": { "message": "Dim" },
+  "statusCount": {
+    "message": "$COUNT$ partner listings filtered on this page.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "statusOff": { "message": "Filtering is off." },
+  "statusOpenMarketplace": { "message": "Open Facebook Marketplace to filter listings." }
+}

@@ -1,0 +1,13 @@
+{
+  "extName": { "message": "Marketplace Native Only" },
+  "extDescription": { "message": "Nasconde gli annunci dei partner importati da siti esterni su Facebook Marketplace, così vedi solo gli oggetti pubblicati su Facebook." },
+  "enabledLabel": { "message": "Filtra gli annunci dei partner" },
+  "modeHide": { "message": "Nascondi" },
+  "modeDim": { "message": "Attenua" },
+  "statusCount": {
+    "message": "$COUNT$ annunci dei partner filtrati in questa pagina.",
+    "placeholders": { "count": { "content": "$1" } }
+  },
+  "statusOff": { "message": "Il filtro è disattivato." },
+  "statusOpenMarketplace": { "message": "Apri Facebook Marketplace per filtrare gli annunci." }
+}
