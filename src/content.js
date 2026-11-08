@@ -31,6 +31,7 @@
       if (classifyAnchor(anchor) === "partner") card.dataset.fmf = "partner";
       else delete card.dataset.fmf;
     }
+    globalThis.FMFLayout.merge(findCard);
     reportCount();
   }
 

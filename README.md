@@ -40,8 +40,10 @@ To update, replace the folder with the new version and press the reload button o
 - On/off switch and a counter on the toolbar badge.
 - English and Italian interface.
 
+- In Hide mode the grid is merged into one continuous flow, so hidden cards leave no gaps.
+
 > [!NOTE]
-> Facebook loads the feed in batches, so hiding cards can leave some rows shorter than others. If your area has few native listings, the feed can look sparse: that is what is left once partner listings are gone.
+> If your area has few native listings, Facebook keeps loading new batches as you scroll to find them: that is what is left once partner listings are gone.
 
 ## How it works
 
@@ -68,6 +70,7 @@ The extension runs only on `facebook.com`, reads the page you are viewing and st
 manifest.json          MV3 manifest
 src/detect.js          partner listing detection (pure, unit tested)
 src/content.js         marks cards, applies hide/dim, watches DOM changes
+src/layout.js          merges Facebook's grid batches into one continuous grid
 src/background.js      toolbar badge counter
 src/popup.*            settings popup
 _locales/              en, it strings
