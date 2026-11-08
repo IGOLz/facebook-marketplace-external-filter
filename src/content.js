@@ -28,8 +28,8 @@
       if (anchor.dataset.mnoHref === href) continue;
       anchor.dataset.mnoHref = href;
       const card = findCard(anchor);
-      if (classifyAnchor(anchor) === "partner") card.dataset.mno = "partner";
-      else delete card.dataset.mno;
+      if (classifyAnchor(anchor) === "partner") card.dataset.fmf = "partner";
+      else delete card.dataset.fmf;
     }
     reportCount();
   }
